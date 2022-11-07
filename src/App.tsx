@@ -1,12 +1,18 @@
-import React, { useEffect } from 'react';
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
 import './App.css';
 
 function App() {
 
+  const [dane, setDane] = useState<{[key: string]: any}> ([])
+
   useEffect(()=>{
-    fetch('https://ckan2.multimediagdansk.pl/departures?stopId=1979')
-      .then((response) => response.json())
-      .then((data) => console.log(data))
+    axios
+    .get('https://ckan2.multimediagdansk.pl/departures?stopId=1979')
+      .then((response) => {
+        console.log(response.data.departures);
+        setDane(response.data.departures);
+      })
       .catch((err) => {
         console.log(err.message);
       })
@@ -25,7 +31,9 @@ function App() {
 },[])
   return (
     <div className="App">
-      
+      {dane.map((dana: { [key: string]: any}) =>(
+        <div >{dana.headsign}</div>
+      ))}
     </div>
   );
 }
