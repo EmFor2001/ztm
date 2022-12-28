@@ -5,5 +5,5 @@ This is a small project using API provided by ZTM in Gdańsk to track general pu
 - React
 - TS
 - React-router
-- Axios
+- Axios /br
 and probably more in the future...
